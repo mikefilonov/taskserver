@@ -15,16 +15,13 @@ class TaskManager(object):
 		self.executor.start_execution_loop()
 
 	def put(self, task):
-		id = uuid.uuid1()
+		id = str(uuid.uuid4())
 		self.task_table[id] = task
 		self.executor.put(task)
 		return id
 
 	def get(self, id):
-		task = self.task_table.get(id)
-		if task is not None and task.status in [DONE, ERROR]:
-			self.remove(id)
-		return task
+		return self.task_table.get(id)
 
 	def remove(self, id):
 		del self.task_table[id]

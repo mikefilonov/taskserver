@@ -27,8 +27,18 @@ class Task(object):
 		"""Do actual work of the task
 
 		Should be implemented in sub-classes. 
+		"""
+		pass
+
+
+
+	def answer(self):
+		"""Return result of the task
+
+		Should be implemented in sub-classes. 
 		"""		
 		pass
+
 
 	def progress(self):
 		"""Return a progress of the task in a form of a touple (progress, message) 
@@ -42,3 +52,7 @@ class Task(object):
 		"""Return a title of a task"""		
 		return self.__class__.__name__
 
+
+	def is_finished(self):
+		
+		return self.status in [DONE, ERROR]
